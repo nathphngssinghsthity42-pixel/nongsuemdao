@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>nongsuemdao</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+html,body{
+width:100%;
+height:100%;
+overflow:hidden;
+}
+
+/* BACKGROUND VIDEO ONLY */
+#bg-video{
+position:fixed;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-2;
+}
+
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.10);
+z-index:-1;
+}
+
+/* CONTAINER */
+.container{
+position:relative;
+z-index:10;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:18px;
+}
+
+/* GLASS UI */
+.logo{
+color:white;
+font-size:2.3rem;
+font-weight:700;
+padding:18px 55px;
+border-radius:999px;
+
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(45px);
+
+border:1px solid rgba(255,255,255,.18);
+
+box-shadow:
+0 25px 60px rgba(0,0,0,.25),
+inset 0 0 20px rgba(255,255,255,.05);
+
+animation:float 5s ease-in-out infinite;
+}
+
+.card{
+width:290px;
+padding:18px;
+text-align:center;
+text-decoration:none;
+color:white;
+font-size:1.05rem;
+border-radius:999px;
+
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(45px);
+
+border:1px solid rgba(255,255,255,.18);
+
+transition:.25s ease;
+}
+
+.card:hover{
+transform:translateY(-6px) scale(1.05);
+box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.spotify{
+border:none;
+border-radius:18px;
+}
+
+/* FOOTER */
+.footer{
+position:fixed;
+bottom:15px;
+left:50%;
+transform:translateX(-50%);
+color:white;
+font-size:.85rem;
+opacity:.7;
+}
+
+/* FLOAT */
+@keyframes float{
+50%{transform:translateY(-10px);}
+}
+
+/* BUBBLES ONLY */
+.bubble{
+position:absolute;
+bottom:-120px;
+border-radius:50%;
+pointer-events:none;
+
+background:radial-gradient(circle at 30% 30%,
+rgba(255,255,255,.85),
+rgba(255,255,255,.12),
+transparent 70%);
+
+backdrop-filter:blur(18px
