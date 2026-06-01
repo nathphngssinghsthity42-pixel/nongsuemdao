@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>nongsuemdao</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+html,body{
+width:100%;
+height:100%;
+overflow:hidden;
+background:#000;
+}
+
+/* BACKGROUND VIDEO (ชัดขึ้น) */
+#bg-video{
+position:fixed;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-3;
+filter:brightness(1) contrast(1.05);
+}
+
+/* overlay เบาลงเพื่อให้เห็นสีวิดีโอ */
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.15);
+z-index:-2;
+}
+
+/* CURSOR GLOW */
+.glow{
+position:fixed;
+width:300px;
+height:300px;
+border-radius:50%;
+pointer-events:none;
+transform:translate(-50%,-50%);
+background:radial-gradient(circle,
+rgba(0,255,255,.22),
+rgba(255,255,255,.08),
+transparent 70%);
+filter:blur(35px);
+mix-blend-mode:screen;
+z-index:0;
+}
+
+/* CONTAINER (NO 3D) */
+.container{
+position:relative;
+z-index:10;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:18px;
+}
+
+/* GLASS UI */
+.logo{
+color:white;
+font-size:2.3rem;
+font-weight:700;
+padding:18px 55px;
+border-radius:999px;
+
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(45px);
+
+border:1px solid rgba(255,255,255,.18);
+
+box-shadow:
+0 25px 60px rgba(0,0,0,.35),
+inset 0 0 20px rgba(255,255,255,.05);
+
+animation:float 5s ease-in-out infinite;
+}
+
+.card{
+width:290px;
+padding:18px;
+text-align:center;
+text-decoration:none;
+color:white;
+font-size:1.05rem;
+border-radius:999px;
+
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(45px);
+
+border:1px solid rgba(255,255,255,.18);
+
+transition:.25s ease;
+}
+
+.card:hover{
+transform:translateY(-6px) scale(1.05);
+box-shadow:0 20px 50px rgba(0,255,255,.12);
+}
+
+.spotify{
+border:none;
+border-radius:18px;
+}
+
+/* FOOTER */
+.footer{
+position:fixed;
+bottom:15px;
+left:50%;
+transform:translateX(-50%);
+color:white;
+font-size:.85rem;
+opacity:.7;
+}
+
+/* FLOAT */
+@keyframes float{
+50%{transform:translateY(-10px);}
+}
+
+/* ===== BUBBLES (2D SAFE MODE) ===== */
+.bubble{
+position:absolute;
+bottom:-120px;
+border-radius:50%;
+pointer-events:none;
+
+background:radial-gradient(circle at 30% 30%,
+rgba(255,255,255,.85),
+rgba(255,255,255,.12),
+transparent 70%);
+
+backdrop-filter:blur(18px);
+
+box-shadow:
+inset 0 0 20px rgba(255,255,255,.2),
+0 0 25px rgba(0,255,255,.08);
+
+animation:rise linear infinite;
+}
+
+@keyframes rise{
+from{transform:translateY(0);}
+to{transform:translateY(-130vh);}
+}
+</style>
+</head>
+
+<body>
+
+<video autoplay muted loop playsinline id="bg-video">
+<source src="background.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="glow" id="glow"></div>
+
+<div class="container">
+
+<div class="logo">𝓝𝓸𝓷𝓰𝓢𝓾𝓮𝓶𝓓𝓪𝓸</div>
+
+<a class="card" href="https://www.instagram.com/bixd_13" target="_blank">bixd_13</a>
+<a class="card" href="https://www.instagram.com/charli_xcx" target="_blank">charli xcx</a>
+<a class="card" href="https://www.instagram.com/babyjolystar" target="_blank">babyjolystar</a>
+
+<iframe class="spotify"
+src="https://open.spotify.com/embed/track/3d5NbAerF2MMHw9tdIxiFH?theme=0"
+width="320" height="80"></iframe>
+
+<iframe class="spotify"
+src="https://open.spotify.com/embed/track/1hsFfy0IZrIfACU4d6k6Ij?theme=0"
+width="320" height="80"></iframe>
+
+</div>
+
+<div class="footer">©2026 NongSuemDao</div>
+
+<script>
+
+/* glow follow */
+const glow = document.getElementById("glow");
+
+window.addEventListener("mousemove",(e)=>{
+glow.style.left = e.clientX + "px";
+glow.style.top = e.clientY + "px";
+});
+
+/* bubbles safe */
+function createBubble(){
+
+if(document.querySelectorAll('.bubble').length > 25) return;
+
+const b = document.createElement("div");
+b.classList.add("bubble");
+
+const size = Math.random()*80 + 25;
+
+b.style.width = size + "px";
+b.style.height = size + "px";
+
+b.style.left = Math.random()*100 + "vw";
+
+b.style.opacity = 0.2 + Math.random()*0.6;
+
+b.style.animationDuration = (8 + Math.random()*10) + "s";
+
+document.body.appendChild(b);
+
+setTimeout(()=>b.remove(),20000);
+}
+
+setInterval(createBubble,800);
+
+</script>
+
+</body>
+</html>
